@@ -1,34 +1,21 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { Question } from '../Question';
+import { StartQuestionnaire } from '../StartQuestionnaire';
 import react, { FunctionComponent, useEffect, useState } from 'react';
-import { useQuizReducer, quizActions } from '../Quiz/quizreducer';
+import { useQuizReducer, quizActions } from '../Quiz/quizReducer';
 
-interface IQuizProps {}
+interface IQuizProps {
+  questions: any;
+}
 
-const quiz = {
-  questions: [
-    {
-      text: 'Who invented JavaScript?',
-      answerOptions: ['Douglas Crockford', 'Sheryl Sandberg', 'Brendan Eich'],
-      correctAnswer: 1,
-      answer: -1
-    },
-    {
-      text: 'Who invented JavaScript 2?',
-      answerOptions: ['Douglas Crockford', 'Sheryl Sandberg', 'Brendan Eich'],
-      answer: -1
-    }
-  ]
-};
-
-const Quiz: FunctionComponent<IQuizProps> = () => {
+const Quiz: FunctionComponent<IQuizProps> = ({questions}) => {
   const [quizState, quizActionDispatch] = useQuizReducer();
 
   useEffect(() => {
     quizActionDispatch({
       type: quizActions.setQuestions,
-      payload: quiz.questions
+      payload: questions
     });
   }, [quizActionDispatch]);
 
@@ -46,8 +33,18 @@ const Quiz: FunctionComponent<IQuizProps> = () => {
     });
   };
 
+  const setContestantName = (name: number) => {
+    quizActionDispatch({
+      type: quizActions.setContestantName,
+      payload: name
+    });
+  };
+
   if (quizState.currentQuestion > quizState.questions.length - 1) {
     return <div>endQuestionnaire</div>;
+  }
+  if (!quizState.contestantName) {
+    return <StartQuestionnaire setContestantName={setContestantName} />;
   }
 
   return (

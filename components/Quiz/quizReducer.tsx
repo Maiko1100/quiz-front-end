@@ -3,15 +3,18 @@ import { useReducer } from 'react';
 type quizState = {
   questions: any;
   currentQuestion: number;
+  contestantName: string;
 };
 const initialState = {
   questions: [],
-  currentQuestion: 0
+  currentQuestion: 0,
+  contestantName: ''
 };
 
 export const quizActions = {
   setQuestions: 'setQuestions',
-  setCurrentQuestion: 'setCurrentQuestion'
+  setCurrentQuestion: 'setCurrentQuestion',
+  setContestantName: 'setContestantName'
 };
 
 const quizReducer = (state: quizState, action: any): any => {
@@ -28,6 +31,11 @@ const quizReducer = (state: quizState, action: any): any => {
         ...state,
         currentQuestion: action.payload.newQuestion,
         questions: newQuestions
+      };
+    case quizActions.setContestantName:
+      return {
+        ...state,
+        contestantName: action.payload
       };
     default:
       return state;
