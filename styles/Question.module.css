@@ -1,0 +1,18 @@
+.questionContainer {
+  border: 1px solid black;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.answerOptionContainer {
+  padding-top: 1rem;
+}
+.answerOption {
+  width: 100%;
+  border: 1px solid;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+.active {
+  background-color: aliceblue;
+}

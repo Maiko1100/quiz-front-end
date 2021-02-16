@@ -1,5 +1,4 @@
 import { Nav } from '../Nav';
-import { Header } from '../Header';
 import styles from '../../styles/layout.module.css';
 import { FunctionComponent } from 'react';
 
