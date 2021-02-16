@@ -6,6 +6,7 @@ interface IAnswerOptionProps {
   setSelectedOption: any;
   index: number;
   selectedOption: number;
+  correctOption: number;
 }
 
 export const AnswerOption: FunctionComponent<IAnswerOptionProps> = ({ option, setSelectedOption, index, selectedOption }) => {

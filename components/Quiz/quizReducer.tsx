@@ -1,20 +1,28 @@
 import { useReducer } from 'react';
+import { IQuestion } from '../../api/quiz';
 
 type quizState = {
-  questions: any;
+  questions: IQuestion[];
   currentQuestion: number;
   contestantName: string;
+  savedQuiz?: { questions: IQuestion[]; correctAnswers: number; name: string };
+  saveQuizState: { loading: boolean; error: string; success: boolean };
 };
 const initialState = {
-  questions: [],
+  questions: undefined,
   currentQuestion: 0,
-  contestantName: ''
+  contestantName: '',
+  savedQuiz: {},
+  saveQuizState: { loading: false, error: '', success: false }
 };
 
 export const quizActions = {
   setQuestions: 'setQuestions',
   setCurrentQuestion: 'setCurrentQuestion',
-  setContestantName: 'setContestantName'
+  setContestantName: 'setContestantName',
+  startSaveQuiz: 'startSaveQuiz',
+  errorSaveQuiz: 'errorSaveQuiz',
+  successSaveQuiz: 'successSaveQuiz'
 };
 
 const quizReducer = (state: quizState, action: any): any => {
@@ -36,6 +44,22 @@ const quizReducer = (state: quizState, action: any): any => {
       return {
         ...state,
         contestantName: action.payload
+      };
+    case quizActions.startSaveQuiz:
+      return {
+        ...state,
+        saveQuizState: { loading: true, error: '', success: false }
+      };
+    case quizActions.successSaveQuiz:
+      return {
+        ...state,
+        saveQuizState: { loading: false, error: '', success: true },
+        savedQuiz: action.payload
+      };
+    case quizActions.errorSaveQuiz:
+      return {
+        ...state,
+        saveQuizState: { loading: false, error: action.payload, success: false }
       };
     default:
       return state;

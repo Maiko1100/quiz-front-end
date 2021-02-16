@@ -5,16 +5,21 @@ export interface IQuizResponse {
   id: string;
 }
 export interface IAnswerOption {
-  text: string;
+  option: string;
 }
 export interface IQuestion {
-  id: string;
   text: string;
   answerOptions: IAnswerOption[];
+  correctAnswer: number;
+  answer?: number;
 }
 export default {
   getQuiz: async (id: string): Promise<IQuizResponse> => {
     const response = await axios.get<IQuizResponse>(`/quiz/${id}`);
+    return response.data;
+  },
+  saveQuiz: async ({ questions, name }: { questions: IQuestion[]; name: string }): Promise<IQuizResponse> => {
+    const response = await axios.post<IQuizResponse>(`/quiz/saveQuiz`, { questions, name });
     return response.data;
   }
 };
