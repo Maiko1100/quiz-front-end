@@ -1,4 +1,4 @@
-import Quiz from '../components/Quiz';
+import QuizComponent from '../components/Quiz';
 import quizActions from '../api/quiz';
 import { FunctionComponent } from 'react';
 
@@ -9,7 +9,7 @@ interface IQuizProps {
 const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   return (
     <>
-      <Quiz questions={questions} />
+      <QuizComponent questions={questions} />
     </>
   );
 };
