@@ -6,7 +6,7 @@ import { FunctionComponent } from 'react';
 //   questions: any;
 // }
 
-export default Quiz = ({ questions }) => {
+const Quiz = ({ questions }) => {
   return (
     <>
       <QuizComponent questions={questions} />
@@ -14,7 +14,7 @@ export default Quiz = ({ questions }) => {
   );
 };
 
-// export default Quiz;
+export default Quiz;
 
 export const getStaticProps = async () => {
   // const response = await quizActions.getQuiz('602a96f8a1c163c95b15438c');
