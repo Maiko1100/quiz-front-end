@@ -1,14 +1,12 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import Quiz from '../components/Quiz';
 import quizActions from '../api/quiz';
-import react, { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
 
-interface IHomeProps {
+interface IQuizProps {
   questions: any;
 }
 
-const Home: FunctionComponent<IHomeProps> = ({ questions }) => {
+const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   return (
     <>
       <Quiz questions={questions} />
@@ -16,7 +14,7 @@ const Home: FunctionComponent<IHomeProps> = ({ questions }) => {
   );
 };
 
-export default Home;
+export default Quiz;
 
 export const getStaticProps = async () => {
   const response = await quizActions.getQuiz('602a96f8a1c163c95b15438c');

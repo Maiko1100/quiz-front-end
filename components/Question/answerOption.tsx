@@ -7,15 +7,35 @@ interface IAnswerOptionProps {
   index: number;
   selectedOption: number;
   correctOption: number;
+  isPreview: boolean;
 }
 
-export const AnswerOption: FunctionComponent<IAnswerOptionProps> = ({ option, setSelectedOption, index, selectedOption }) => {
+export const AnswerOption: FunctionComponent<IAnswerOptionProps> = ({
+  option,
+  setSelectedOption,
+  index,
+  selectedOption,
+  isPreview,
+  correctOption
+}) => {
+  const getClass = () => {
+    if (isPreview && index === selectedOption) {
+      if (correctOption === selectedOption) {
+        return `${QuestionStyles.correct}`;
+      }
+      if (selectedOption !== correctOption) {
+        return `${QuestionStyles.inCorrect}`;
+      }
+    }
+    return `${selectedOption === index && QuestionStyles.active}`;
+  };
+
   return (
     <div
       onClick={() => {
         setSelectedOption(index);
       }}
-      className={`${QuestionStyles.answerOption} ${selectedOption === index && QuestionStyles.active}`}>
+      className={`${QuestionStyles.answerOption} ${getClass()}`}>
       {option}
     </div>
   );

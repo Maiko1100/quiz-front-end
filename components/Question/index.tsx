@@ -9,8 +9,15 @@ interface IQuestionProps {
   setNextQuestion?: any;
   setPreviousQuestion?: any;
   currentQuestion?: number;
+  isPreview?: boolean;
 }
-export const Question: FunctionComponent<IQuestionProps> = ({ question, setNextQuestion, setPreviousQuestion, currentQuestion }) => {
+export const Question: FunctionComponent<IQuestionProps> = ({
+  question,
+  setNextQuestion,
+  setPreviousQuestion,
+  currentQuestion,
+  isPreview
+}) => {
   let [selectedOption, setSelectedOption] = useState<number>(question.answer);
 
   useEffect(() => {
@@ -19,12 +26,13 @@ export const Question: FunctionComponent<IQuestionProps> = ({ question, setNextQ
 
   return (
     <>
-      <div className={QuestionStyles.questionContainer}>
+      <div className={`${QuestionStyles.questionContainer} ${isPreview && QuestionStyles.preview}`}>
         {question.text}
         <div className={QuestionStyles.answerOptionContainer}>
           {question.answerOptions.map((option: string, index: number) => (
             <AnswerOption
               key={index}
+              isPreview={isPreview}
               setSelectedOption={setSelectedOption}
               option={option}
               index={index}
@@ -34,8 +42,12 @@ export const Question: FunctionComponent<IQuestionProps> = ({ question, setNextQ
           ))}
         </div>
       </div>
-      <Button onClick={() => setNextQuestion(selectedOption)}>next</Button>
-      {currentQuestion > 0 && <Button onClick={() => setPreviousQuestion(selectedOption)}>previous</Button>}
+      {!isPreview && (
+        <Button disabled={!selectedOption} onClick={() => setNextQuestion(selectedOption)}>
+          Next
+        </Button>
+      )}
+      {!isPreview && currentQuestion > 0 && <Button onClick={() => setPreviousQuestion(selectedOption)}>previous</Button>}
     </>
   );
 };

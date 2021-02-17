@@ -8,6 +8,7 @@
 }
 .answerOption {
   width: 100%;
+  cursor: pointer;
   border: 1px solid;
   padding: 0.5rem;
   border-radius: 10px;
@@ -15,4 +16,13 @@
 }
 .active {
   background-color: aliceblue;
+}
+.correct {
+  background-color: green;
+}
+.inCorrect {
+  background-color: red;
+}
+.preview {
+  pointer-events: none;
 }

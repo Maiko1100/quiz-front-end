@@ -39,11 +39,12 @@ export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ qu
   return (
     <div>
       <span>You have finished your quiz!</span>
+      <br />
       <span>
         You have {savedQuiz.correctAnswers} / {savedQuiz.questions.length} questions correct.
       </span>
       {savedQuiz.questions.map((question: IQuestion, index: number) => (
-        <Question key={index} question={question} />
+        <Question key={index} question={question} isPreview={true} />
       ))}
     </div>
   );
