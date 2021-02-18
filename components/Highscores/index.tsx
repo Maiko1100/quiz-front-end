@@ -1,4 +1,3 @@
-// import styles from '../../styles/StartQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
 import { ISavedQuiz } from '../../api/quiz';
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
@@ -22,6 +21,8 @@ const Highscores: FunctionComponent<IHighscoresProps> = ({ savedQuizzes }) => {
     const filteredArray = savedQuizzes.filter((savedQuiz: ISavedQuiz) => savedQuiz.userName.toLowerCase().includes(name.toLowerCase()));
     setSavedQuizzes(filteredArray);
   };
+
+
   return (
     <>
       <TextField

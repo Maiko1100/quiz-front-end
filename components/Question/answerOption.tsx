@@ -3,7 +3,7 @@ import { FunctionComponent, useState } from 'react';
 
 interface IAnswerOptionProps {
   option: string;
-  setSelectedOption: any;
+  setSelectedOption: (index: number) => void;
   index: number;
   selectedOption: number;
   correctOption: number;

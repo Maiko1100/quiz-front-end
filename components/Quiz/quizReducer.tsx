@@ -1,14 +1,14 @@
 import { useReducer } from 'react';
 import { IQuestion } from '../../api/quiz';
 
-type quizState = {
+export interface IQuizState {
   questions: IQuestion[];
   currentQuestion: number;
   contestantName: string;
   savedQuiz?: { questions: IQuestion[]; correctAnswers: number; name: string };
   saveQuizState: { loading: boolean; error: string; success: boolean };
   finishedQuiz: boolean;
-};
+}
 const initialState = {
   questions: undefined,
   currentQuestion: 0,
@@ -27,7 +27,7 @@ export const quizActions = {
   successSaveQuiz: 'successSaveQuiz'
 };
 
-const quizReducer = (state: quizState, action: any): any => {
+const quizReducer = (state: IQuizState, action: any): any => {
   switch (action.type) {
     case quizActions.setQuestions:
       return {
@@ -36,7 +36,7 @@ const quizReducer = (state: quizState, action: any): any => {
       };
     case quizActions.setCurrentQuestion:
       let finishedQuiz = false;
-      let newQuestions = [...state.questions];
+      const newQuestions = [...state.questions];
       newQuestions[state.currentQuestion].answer = action.payload.answer;
       if (action.payload.newQuestion === state.questions.length) {
         finishedQuiz = true;

@@ -2,7 +2,10 @@ import styles from '../styles/Home.module.css';
 import { FunctionComponent } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-const Home: FunctionComponent<{}> = () => {
+interface IHome {
+  setContestantName: (name: string) => void;
+}
+const Home: FunctionComponent<IHome> = () => {
   const router = useRouter();
 
   const redirect = (e: any, path: string) => {

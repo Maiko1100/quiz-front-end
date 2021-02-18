@@ -1,23 +1,30 @@
 import styles from '../../styles/EndQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
 import { Question } from '../Question';
-import quizActions, { IQuestion } from '../../api/quiz';
+import quizActions, { IQuestion, ISavedQuiz } from '../../api/quiz';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { IQuizState } from '../Quiz/quizReducer';
 
 interface IEndQuestionnaireProps {
-  quizState: any;
+  quizState: IQuizState;
 }
 export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ quizState }) => {
   const [saveQuizState, setSaveQuizState] = useState({ loading: false, success: false, error: '' });
-  const [savedQuiz, setSavedQuiz] = useState<any>({ questions: [], name: '', correctAnswers: 0 });
+  const [savedQuiz, setSavedQuiz] = useState<ISavedQuiz>({
+    questions: [],
+    userName: '',
+    correctAnswers: 0,
+    created_at: '',
+    _id: ''
+  });
   const router = useRouter();
 
   useEffect(() => {
     if (quizState.finishedQuiz && !saveQuizState.success && !saveQuizState.error && !saveQuizState.loading) {
       saveQuiz();
     }
-  });
+  }, [quizState.finishedQuiz, saveQuizState]);
 
   const redirect = (e: any, path: string) => {
     e.preventDefault();

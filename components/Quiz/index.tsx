@@ -3,9 +3,10 @@ import { StartQuestionnaire } from '../StartQuestionnaire';
 import { EndQuestionnaire } from '../EndQuestionnaire';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { useQuizReducer, quizActions } from '../Quiz/quizReducer';
+import { IQuestion } from '../../api/quiz';
 
 interface IQuizProps {
-  questions: any;
+  questions: IQuestion[];
 }
 
 const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
@@ -14,7 +15,7 @@ const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   useEffect(() => {
     quizActionDispatch({
       type: quizActions.setQuestions,
-      payload: questions
+      questions
     });
   }, [quizActionDispatch]);
 
@@ -32,7 +33,7 @@ const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
     });
   };
 
-  const setContestantName = (name: number) => {
+  const setContestantName = (name: string) => {
     quizActionDispatch({
       type: quizActions.setContestantName,
       payload: name

@@ -6,9 +6,9 @@ import { IQuestion } from '../../api/quiz';
 import classes from '../../styles/Question.module.css';
 
 interface IQuestionProps {
-  question: any;
-  setNextQuestion?: any;
-  setPreviousQuestion?: any;
+  question: IQuestion;
+  setNextQuestion?: (index: number) => void;
+  setPreviousQuestion?: (index: number) => void;
   currentQuestion?: number;
   isPreview?: boolean;
 }
@@ -19,7 +19,7 @@ export const Question: FunctionComponent<IQuestionProps> = ({
   currentQuestion,
   isPreview
 }) => {
-  let [selectedOption, setSelectedOption] = useState<number>(question.answer);
+  const [selectedOption, setSelectedOption] = useState<number>(question.answer);
 
   useEffect(() => {
     setSelectedOption(question.answer);
@@ -29,7 +29,7 @@ export const Question: FunctionComponent<IQuestionProps> = ({
       <div className={`${QuestionStyles.questionContainer} ${isPreview && QuestionStyles.preview}`}>
         {question.text}
         <div className={QuestionStyles.answerOptionContainer}>
-          {question.answerOptions.map((option: string, index: number) => (
+          {question.answerOptions.map((option: any, index: number) => (
             <AnswerOption
               key={index}
               isPreview={isPreview}

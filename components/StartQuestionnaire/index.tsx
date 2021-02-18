@@ -3,7 +3,7 @@ import { useState, FunctionComponent } from 'react';
 import { TextField, Button } from '@material-ui/core';
 
 interface IStartQuestionnaireProps {
-  setContestantName: any;
+  setContestantName: (name: string) => void;
 }
 export const StartQuestionnaire: FunctionComponent<IStartQuestionnaireProps> = ({ setContestantName }) => {
   const [name, setName] = useState('');

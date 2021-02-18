@@ -1,11 +1,11 @@
 import QuizComponent from '../components/Quiz';
-import quizActions from '../api/quiz';
+import quizActions, { IQuestion } from '../api/quiz';
 import { FunctionComponent } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 interface IQuizProps {
-  questions: any;
+  questions: IQuestion[];
 }
 
 const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
