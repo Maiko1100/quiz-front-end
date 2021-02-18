@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export let hostUrl = 'http://localhost:5000/';
+// export let hostUrl = 'http://assignmentapi.maikokuipers.nl/';
 // const hostName = window.location.hostname;
 // if (hostName === "localhost") {
 //   hostUrl = "http://localhost:5000/";

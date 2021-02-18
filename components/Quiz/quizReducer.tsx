@@ -7,13 +7,15 @@ type quizState = {
   contestantName: string;
   savedQuiz?: { questions: IQuestion[]; correctAnswers: number; name: string };
   saveQuizState: { loading: boolean; error: string; success: boolean };
+  finishedQuiz: boolean;
 };
 const initialState = {
   questions: undefined,
   currentQuestion: 0,
   contestantName: '',
   savedQuiz: {},
-  saveQuizState: { loading: false, error: '', success: false }
+  saveQuizState: { loading: false, error: '', success: false },
+  finishedQuiz: false
 };
 
 export const quizActions = {
@@ -33,12 +35,17 @@ const quizReducer = (state: quizState, action: any): any => {
         questions: action.payload
       };
     case quizActions.setCurrentQuestion:
+      let finishedQuiz = false;
       let newQuestions = [...state.questions];
       newQuestions[state.currentQuestion].answer = action.payload.answer;
+      if (action.payload.newQuestion === state.questions.length) {
+        finishedQuiz = true;
+      }
       return {
         ...state,
         currentQuestion: action.payload.newQuestion,
-        questions: newQuestions
+        questions: newQuestions,
+        finishedQuiz
       };
     case quizActions.setContestantName:
       return {

@@ -10,12 +10,11 @@ interface IEndQuestionnaireProps {
   quizState: any;
 }
 export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ quizState }) => {
-  const [name, setName] = useState('');
   const [saveQuizState, setSaveQuizState] = useState({ loading: false, success: false, error: '' });
   const [savedQuiz, setSavedQuiz] = useState<any>({ questions: [], name: '', correctAnswers: 0 });
 
   useEffect(() => {
-    if (!saveQuizState.loading && !saveQuizState.error && !saveQuizState.success) {
+    if (quizState.finishedQuiz && !saveQuizState.success && !saveQuizState.error && !saveQuizState.loading) {
       saveQuiz();
     }
   });
@@ -34,7 +33,7 @@ export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ qu
     return <div>Saving questionnaire...</div>;
   }
   if (saveQuizState.error) {
-    return <div>something wend wrong saving your questionnaire</div>;
+    return <div>something went wrong saving your questionnaire</div>;
   }
   return (
     <div>

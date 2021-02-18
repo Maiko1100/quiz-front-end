@@ -4,7 +4,6 @@ import { EndQuestionnaire } from '../EndQuestionnaire';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { useQuizReducer, quizActions } from '../Quiz/quizReducer';
 
-
 interface IQuizProps {
   questions: any;
 }
@@ -46,7 +45,6 @@ const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   if (!quizState.contestantName) {
     return <StartQuestionnaire setContestantName={setContestantName} />;
   }
-
   return (
     <>
       <Question

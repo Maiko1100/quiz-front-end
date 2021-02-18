@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/quiz.js"  ],
+, "pages/quiz.tsx"  ],
   "exclude": [
     "node_modules"
   ]
