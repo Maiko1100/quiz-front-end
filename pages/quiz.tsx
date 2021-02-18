@@ -2,6 +2,7 @@ import QuizComponent from '../components/Quiz';
 import quizActions from '../api/quiz';
 import { FunctionComponent } from 'react';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 interface IQuizProps {
   questions: any;
@@ -10,6 +11,13 @@ interface IQuizProps {
 const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   return (
     <>
+      <Head>
+        <title>Quiz App || Quiz</title>
+
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+      </Head>
       <QuizComponent questions={questions} />
     </>
   );

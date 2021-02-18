@@ -1,18 +1,25 @@
-import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { FunctionComponent } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Home: FunctionComponent<{}> = () => {
+  const router = useRouter();
+
+  const redirect = (e: any, path: string) => {
+    e.preventDefault();
+    router.push(path);
+  };
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Quiz app</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-      </Head>
-      <div>Start Quiz</div>
-      <div>Show hiscores</div>
+      <div className={styles.buttonContainer}>
+        <div onClick={(e) => redirect(e, '/quiz')} className={styles.button}>
+          Start quiz
+        </div>
+        <div onClick={(e) => redirect(e, '/hiscores')} className={styles.button}>
+          Show hiscores
+        </div>
+      </div>
     </div>
   );
 };

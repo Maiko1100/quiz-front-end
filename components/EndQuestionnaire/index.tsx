@@ -1,10 +1,7 @@
-import { Nav } from '../Nav';
 // import styles from '../../styles/StartQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
-import { Button, Input } from '@material-ui/core';
 import { Question } from '../Question';
 import quizActions, { IQuestion } from '../../api/quiz';
-import quiz from '../../api/quiz';
 
 interface IEndQuestionnaireProps {
   quizState: any;
