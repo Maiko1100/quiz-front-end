@@ -1,7 +1,7 @@
 import { Question } from '../Question';
 import { StartQuestionnaire } from '../StartQuestionnaire';
 import { EndQuestionnaire } from '../EndQuestionnaire';
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { useQuizReducer, quizActions } from '../Quiz/quizReducer';
 import { IQuestion } from '../../api/quiz';
 
@@ -11,11 +11,10 @@ interface IQuizProps {
 
 const Quiz: FunctionComponent<IQuizProps> = ({ questions }) => {
   const [quizState, quizActionDispatch] = useQuizReducer();
-
   useEffect(() => {
     quizActionDispatch({
       type: quizActions.setQuestions,
-      questions
+      payload: questions
     });
   }, [quizActionDispatch]);
 
