@@ -27,11 +27,11 @@ export default {
     return response.data;
   },
   saveQuiz: async ({ questions, name }: { questions: IQuestion[]; name: string }): Promise<IQuizResponse> => {
-    const response = await axios.post<IQuizResponse>(`/quiz/saveQuiz`, { questions, name });
+    const response = await axios.post<IQuizResponse>(`/quiz/save-quiz/`, { questions, name });
     return response.data;
   },
   getAllSavedQuizzes: async (): Promise<ISavedQuiz[]> => {
-    const response = await axios.get<ISavedQuiz[]>(`/quiz/`);
+    const response = await axios.get<ISavedQuiz[]>(`/saved-quiz/`);
     return response.data;
   }
 };
