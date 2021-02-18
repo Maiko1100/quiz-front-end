@@ -20,7 +20,7 @@ const Hiscores: FunctionComponent<IHiscoresProps> = ({ savedQuizzes }) => {
 };
 export default Hiscores;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetStaticProps = async () => {
   try {
     const response = await quizActions.getAllSavedQuizzes();
     return { props: { savedQuizzes: response } };
