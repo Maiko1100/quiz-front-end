@@ -1,7 +1,20 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
 .questionContainer {
   border: 1px solid black;
   padding: 2rem;
   border-radius: 1rem;
+  width: 600px;
+}
+@media (max-width: 600px) {
+  .questionContainer {
+    width: 90%;
+  }
 }
 .answerOptionContainer {
   padding-top: 1rem;
@@ -25,4 +38,12 @@
 }
 .preview {
   pointer-events: none;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 1rem;
 }

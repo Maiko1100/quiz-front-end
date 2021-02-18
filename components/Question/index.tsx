@@ -3,6 +3,7 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { AnswerOption } from './answerOption';
 import { Button } from '@material-ui/core';
 import { IQuestion } from '../../api/quiz';
+import classes from '../../styles/Question.module.css';
 
 interface IQuestionProps {
   question: any;
@@ -24,7 +25,7 @@ export const Question: FunctionComponent<IQuestionProps> = ({
     setSelectedOption(question.answer);
   }, [question]);
   return (
-    <>
+    <div className={QuestionStyles.mainContainer}>
       <div className={`${QuestionStyles.questionContainer} ${isPreview && QuestionStyles.preview}`}>
         {question.text}
         <div className={QuestionStyles.answerOptionContainer}>
@@ -41,12 +42,18 @@ export const Question: FunctionComponent<IQuestionProps> = ({
           ))}
         </div>
       </div>
-      {!isPreview && (
-        <Button disabled={selectedOption === undefined} onClick={() => setNextQuestion(selectedOption)}>
-          Next
-        </Button>
-      )}
-      {!isPreview && currentQuestion > 0 && <Button onClick={() => setPreviousQuestion(selectedOption)}>previous</Button>}
-    </>
+      <div className={classes.buttonContainer}>
+        {!isPreview && (
+          <Button style={{ visibility: currentQuestion > 0 ? 'visible' : 'hidden' }} onClick={() => setPreviousQuestion(selectedOption)}>
+            Previous
+          </Button>
+        )}
+        {!isPreview && (
+          <Button disabled={selectedOption === undefined} onClick={() => setNextQuestion(selectedOption)}>
+            Next
+          </Button>
+        )}
+      </div>
+    </div>
   );
 };

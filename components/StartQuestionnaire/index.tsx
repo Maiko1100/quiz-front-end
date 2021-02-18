@@ -1,7 +1,6 @@
-import { Nav } from '../Nav';
-// import styles from '../../styles/StartQuestionnaire.module.css';
+import styles from '../../styles/StartQuestionnaire.module.css';
 import { useState, FunctionComponent } from 'react';
-import { Button, Input } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 interface IStartQuestionnaireProps {
   setContestantName: any;
@@ -10,10 +9,11 @@ export const StartQuestionnaire: FunctionComponent<IStartQuestionnaireProps> = (
   const [name, setName] = useState('');
 
   return (
-    <>
-      <div>Fill in your name to start the quiz!</div>
-      <Input name="name" onChange={(e) => setName(e.target.value)}></Input>
+    <div className={styles.container}>
+      <div className={styles.text}>Fill in your name to start the quiz!</div>
+      <TextField style={{ marginBottom: '1rem' }} name="name" label="Name" onChange={(e) => setName(e.target.value)} />
+
       <Button onClick={() => setContestantName(name)}>Start </Button>
-    </>
+    </div>
   );
 };

@@ -11,7 +11,7 @@ export const Nav: FunctionComponent<INavProps> = () => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/hiscores">Hiscores</Link>
+          <Link href="/highscores">Highscores</Link>
         </li>
       </ul>
     </nav>

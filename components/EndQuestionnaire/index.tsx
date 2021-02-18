@@ -1,4 +1,4 @@
-// import styles from '../../styles/StartQuestionnaire.module.css';
+import styles from '../../styles/EndQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
 import { Question } from '../Question';
 import quizActions, { IQuestion } from '../../api/quiz';
@@ -33,12 +33,14 @@ export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ qu
     return <div>something went wrong saving your questionnaire</div>;
   }
   return (
-    <div>
-      <span>You have finished your quiz!</span>
-      <br />
-      <span>
-        You have {savedQuiz.correctAnswers} / {savedQuiz.questions.length} questions correct.
-      </span>
+    <div className={styles.mainContainer}>
+      <div className={styles.textContainer}>
+        <span>You have finished your quiz!</span>
+        <br />
+        <span>
+          You have {savedQuiz.correctAnswers} / {savedQuiz.questions.length} questions correct.
+        </span>
+      </div>
       {savedQuiz.questions.map((question: IQuestion, index: number) => (
         <Question key={index} question={question} isPreview={true} />
       ))}

@@ -11,20 +11,25 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
-interface IHiscoresProps {
+interface IHighscoresProps {
   savedQuizzes: ISavedQuiz[];
 }
-const Hiscores: FunctionComponent<IHiscoresProps> = ({ savedQuizzes }) => {
+const Highscores: FunctionComponent<IHighscoresProps> = ({ savedQuizzes }) => {
   const classes = useStyles();
   const [savedQuizzesInState, setSavedQuizzes] = useState(savedQuizzes);
 
   const searchUser = (name: string) => {
-    const filteredArray = savedQuizzes.filter((savedQuiz: ISavedQuiz) => savedQuiz.userName.includes(name));
+    const filteredArray = savedQuizzes.filter((savedQuiz: ISavedQuiz) => savedQuiz.userName.toLowerCase().includes(name.toLowerCase()));
     setSavedQuizzes(filteredArray);
   };
   return (
     <>
-      <TextField name="Search" label="Search user" onChange={(e) => searchUser(e.target.value)} />
+      <TextField
+        style={{ marginTop: '1rem', marginBottom: '1rem' }}
+        name="Search"
+        label="Search user"
+        onChange={(e) => searchUser(e.target.value)}
+      />
 
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
@@ -51,7 +56,7 @@ const Hiscores: FunctionComponent<IHiscoresProps> = ({ savedQuizzes }) => {
     </>
   );
 };
-export default Hiscores;
+export default Highscores;
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({

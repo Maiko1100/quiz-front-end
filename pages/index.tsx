@@ -1,8 +1,8 @@
 import styles from '../styles/Home.module.css';
 import { FunctionComponent } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import { TextField } from '@material-ui/core';
+import Image from 'next/image';
 const Home: FunctionComponent<{}> = () => {
   const router = useRouter();
 
@@ -14,10 +14,12 @@ const Home: FunctionComponent<{}> = () => {
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
         <div onClick={(e) => redirect(e, '/quiz')} className={styles.button}>
-          Start quiz
+          <Image src="/quiz.jpg" alt="me" width="200" height="200" />
+          <span className={styles.text}>Start quiz</span>
         </div>
-        <div onClick={(e) => redirect(e, '/hiscores')} className={styles.button}>
-          Show hiscores
+        <div onClick={(e) => redirect(e, '/highscores')} className={styles.button}>
+          <Image src="/highscores.png" alt="me" width="200" height="200" />
+          <span className={styles.text}>Show highscores</span>
         </div>
       </div>
     </div>
