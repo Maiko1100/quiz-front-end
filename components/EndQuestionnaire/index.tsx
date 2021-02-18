@@ -2,6 +2,8 @@ import styles from '../../styles/EndQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
 import { Question } from '../Question';
 import quizActions, { IQuestion } from '../../api/quiz';
+import { Button } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 interface IEndQuestionnaireProps {
   quizState: any;
@@ -9,12 +11,18 @@ interface IEndQuestionnaireProps {
 export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ quizState }) => {
   const [saveQuizState, setSaveQuizState] = useState({ loading: false, success: false, error: '' });
   const [savedQuiz, setSavedQuiz] = useState<any>({ questions: [], name: '', correctAnswers: 0 });
+  const router = useRouter();
 
   useEffect(() => {
     if (quizState.finishedQuiz && !saveQuizState.success && !saveQuizState.error && !saveQuizState.loading) {
       saveQuiz();
     }
   });
+
+  const redirect = (e: any, path: string) => {
+    e.preventDefault();
+    router.push(path);
+  };
 
   const saveQuiz = async () => {
     try {
@@ -40,6 +48,11 @@ export const EndQuestionnaire: FunctionComponent<IEndQuestionnaireProps> = ({ qu
         <span>
           You have {savedQuiz.correctAnswers} / {savedQuiz.questions.length} questions correct.
         </span>
+        <br />
+
+        <Button style={{ marginTop: '1rem' }} onClick={(e) => redirect(e, '/highscores')}>
+          Go to highscores
+        </Button>
       </div>
       {savedQuiz.questions.map((question: IQuestion, index: number) => (
         <Question key={index} question={question} isPreview={true} />
