@@ -23,7 +23,6 @@ export const Question: FunctionComponent<IQuestionProps> = ({
   useEffect(() => {
     setSelectedOption(question.answer);
   }, [question]);
-
   return (
     <>
       <div className={`${QuestionStyles.questionContainer} ${isPreview && QuestionStyles.preview}`}>
@@ -43,7 +42,7 @@ export const Question: FunctionComponent<IQuestionProps> = ({
         </div>
       </div>
       {!isPreview && (
-        <Button disabled={!selectedOption} onClick={() => setNextQuestion(selectedOption)}>
+        <Button disabled={selectedOption === undefined} onClick={() => setNextQuestion(selectedOption)}>
           Next
         </Button>
       )}

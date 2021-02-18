@@ -1,6 +1,5 @@
 // import styles from '../../styles/StartQuestionnaire.module.css';
 import { useState, FunctionComponent, useEffect } from 'react';
-import { Question } from '../Question';
 import { ISavedQuiz } from '../../api/quiz';
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { Table, TextField } from '@material-ui/core';
@@ -10,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import moment from 'moment';
 
 interface IHiscoresProps {
   savedQuizzes: ISavedQuiz[];
@@ -42,7 +42,7 @@ const Hiscores: FunctionComponent<IHiscoresProps> = ({ savedQuizzes }) => {
                   {savedQuiz.userName}
                 </StyledTableCell>
                 <StyledTableCell align="right">{`${savedQuiz.correctAnswers}`}</StyledTableCell>
-                <StyledTableCell align="right">{savedQuiz.created_at}</StyledTableCell>
+                <StyledTableCell align="right">{moment(savedQuiz.created_at).format('DD MMM YYYY H:mm')}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
